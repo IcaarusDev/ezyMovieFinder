@@ -4,11 +4,44 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.MovieDetailFragment">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/backDropPath"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:src="@mipmap/ic_launcher"
+            android:scaleType="fitCenter"
+            android:minHeight="150dp"
+            />
+
+        <TextView
+            android:id="@+id/movieTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/backDropPath"
+            android:text="Movie title"
+            style="@style/Title"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="4dp"
+            />
+
+        <TextView
+            android:id="@+id/movieDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/movieTitle"
+            android:text="Movie description"
+            style="@style/Text"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="4dp"
+            />
+
+    </RelativeLayout>
 
 </layout>
