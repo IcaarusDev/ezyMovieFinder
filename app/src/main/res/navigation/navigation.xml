@@ -11,12 +11,19 @@
             android:id="@+id/actionMovieDetailFragment"
             app:destination="@id/movieDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/movieDetailFragment"
         android:name="com.icaarusdev.ezymoviefinder.view.MovieDetailFragment"
         android:label="MovieDetailFragment" >
         <action
             android:id="@+id/actionMovieListFragment"
-            app:destination="@id/movieListFragment" />
+            app:destination="@id/movieListFragment"/>
+
+        <argument
+            android:name="movieId"
+            android:defaultValue="0"
+            app:argType="integer"/>
+
     </fragment>
 </navigation>
