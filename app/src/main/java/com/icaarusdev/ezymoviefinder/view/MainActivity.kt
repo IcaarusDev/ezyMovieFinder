@@ -1,7 +1,8 @@
-package com.icaarusdev.ezymoviefinder
+package com.icaarusdev.ezymoviefinder.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.icaarusdev.ezymoviefinder.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
