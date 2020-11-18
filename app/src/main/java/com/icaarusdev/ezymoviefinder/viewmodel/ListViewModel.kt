@@ -33,11 +33,9 @@ class ListViewModel : ViewModel() {
     }
 
     private fun onNowPlayingMoviesFetched(moviesList: List<Movie>) {
-        Log.d("remoteResponse", "${moviesList}")
         movies.value = moviesList
         moviesLoadError.value = false
         loading.value = false
-
     }
 
     private fun onError() {
