@@ -1,18 +1,21 @@
 package com.icaarusdev.ezymoviefinder.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icaarusdev.ezymoviefinder.model.Movie
+import com.icaarusdev.ezymoviefinder.model.MovieDatabase
+import kotlinx.coroutines.launch
+import java.util.*
 
-class DetailViewModel : ViewModel() {
+class DetailViewModel(application: Application) : BaseViewModel(application) {
     val movieLiveData = MutableLiveData<Movie>()
 
-    fun fetchData(){
-        val movieTest1 = Movie("1", "Quando um espião do governo é hospitalizado, " +
-                "um taxista de Nova York assume a missão contra a sua vontade, " +
-                "com a ajuda de um smoking computadorizado.","","O terno de dois bilhões de dolares","2020-09-27","6.1")
-
-        movieLiveData.value = movieTest1
+    fun fetchData(id: Int) {
+        launch {
+            val movie = MovieDatabase(getApplication()).movieDao().getMovie(id)
+            movieLiveData.value = movie
+        }
     }
 
 }

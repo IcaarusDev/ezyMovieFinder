@@ -26,7 +26,7 @@ object MoviesApiService {
         onSuccess: (movies: List<Movie>) -> Unit,
         onError: () -> Unit
     ) {
-        api.getNowPlayingMovies(page = page)
+        api.getNowPlayingMovies()
             .enqueue(object : Callback<GetMoviesResponse> {
                 override fun onFailure(call: Call<GetMoviesResponse>, t: Throwable) {
                     onError.invoke()

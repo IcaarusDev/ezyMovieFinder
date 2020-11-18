@@ -1,10 +1,9 @@
 package com.icaarusdev.ezymoviefinder.view
 
 import android.os.Bundle
+import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
@@ -42,30 +41,62 @@ class MovieListFragment : Fragment() {
             movieRcv.visibility = View.GONE
             txvlistError.visibility = View.GONE
             progressBarView.visibility = View.VISIBLE
-            viewModel.refreshData()
+            viewModel.refreshFromCache()
             refreshlayout.isRefreshing = false
         }
         observeViewModel()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+
+        inflater.inflate(R.menu.menu_search, menu)
+        val menuItem = menu!!.findItem(R.id.action_search)
+
+        if (menuItem != null) {
+            val searchView = menuItem.actionView as SearchView
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    TODO("Not yet implemented")
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isNotEmpty()) {
+
+                    }
+
+                    return true
+                }
+
+            })
+        }
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
+
+
     fun observeViewModel() {
-        viewModel.movies.observe(this, Observer { movies: List<Movie> ->
+        viewModel.movies.observe(viewLifecycleOwner, Observer { movies: List<Movie> ->
             movies.let {
                 movieRcv.visibility = View.VISIBLE
                 moviesListAdapter.updateMovieList(movies)
             }
         })
 
-        viewModel.moviesLoadError.observe(this, Observer { isError ->
+        viewModel.moviesLoadError.observe(viewLifecycleOwner, Observer { isError ->
             isError?.let {
-                txvlistError.visibility = if(it) View.VISIBLE else View.GONE
+                txvlistError.visibility = if (it) View.VISIBLE else View.GONE
             }
         })
 
-        viewModel.loading.observe(this, Observer { isLoading ->
-            isLoading?.let{
-                progressBarView.visibility = if(it) View.VISIBLE else View.GONE
-                if (it){
+        viewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
+            isLoading?.let {
+                progressBarView.visibility = if (it) View.VISIBLE else View.GONE
+                if (it) {
                     txvlistError.visibility = View.GONE
                     movieRcv.visibility = View.GONE
                 }

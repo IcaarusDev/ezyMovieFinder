@@ -10,6 +10,7 @@
         <action
             android:id="@+id/actionMovieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+
     </fragment>
 
     <fragment
@@ -21,7 +22,7 @@
             app:destination="@id/movieListFragment"/>
 
         <argument
-            android:name="movieId"
+            android:name="id"
             android:defaultValue="0"
             app:argType="integer"/>
 
