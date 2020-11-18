@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.icaarusdev.ezymoviefinder.model.Movie
 
 class DetailViewModel : ViewModel() {
-    val movieLiveData: MutableLiveData<Movie>()
-            
+    val movieLiveData = MutableLiveData<Movie>()
+
     fun fetchData(){
         val movieTest1 = Movie("1", "Quando um espião do governo é hospitalizado, " +
                 "um taxista de Nova York assume a missão contra a sua vontade, " +

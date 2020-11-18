@@ -37,6 +37,14 @@ class MovieListFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = moviesListAdapter
         }
+
+        refreshlayout.setOnRefreshListener {
+            movieRcv.visibility = View.GONE
+            txvlistError.visibility = View.GONE
+            progressBarView.visibility = View.VISIBLE
+            viewModel.refreshData()
+            refreshlayout.isRefreshing = false
+        }
         observeViewModel()
     }
 

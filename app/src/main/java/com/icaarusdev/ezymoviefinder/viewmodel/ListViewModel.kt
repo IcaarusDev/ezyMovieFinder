@@ -1,27 +1,52 @@
 package com.icaarusdev.ezymoviefinder.viewmodel
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.icaarusdev.ezymoviefinder.model.Movie
+import com.icaarusdev.ezymoviefinder.model.MoviesApi
+import com.icaarusdev.ezymoviefinder.model.MoviesApiService
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
-class ListViewModel: ViewModel() {
+class ListViewModel : ViewModel() {
+
+    private val moviesService = MoviesApiService
+
     val movies = MutableLiveData<List<Movie>>()
     val moviesLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-    fun refreshData(){
-        val movieTest1 = Movie("1", "Quando um espião do governo é hospitalizado, " +
-                "um taxista de Nova York assume a missão contra a sua vontade, " +
-                "com a ajuda de um smoking computadorizado.","","O terno de dois bilhões de dolares","2020-09-27","6.1")
+    fun refreshData() {
+        fetchFromRemote()
+    }
 
-        val movieTest2 = Movie("2", "Quando um espião do governo é hospitalizado, " +
-                "um taxista de Nova York assume a missão contra a sua vontade, " +
-                "com a ajuda de um smoking computadorizado.","","O terno de dois bilhões de dolares","2020-09-27","6.1")
+    private fun fetchFromRemote() {
+        loading.value = true
+        MoviesApiService.getNowPlaying(
+            onSuccess = ::onNowPlayingMoviesFetched,
+            onError = ::onError
+        )
+    }
 
-        val movieList: ArrayList<Movie> = arrayListOf<Movie>(movieTest1,movieTest2)
-
-        movies.value = movieList
+    private fun onNowPlayingMoviesFetched(moviesList: List<Movie>) {
+        Log.d("remoteResponse", "${moviesList}")
+        movies.value = moviesList
         moviesLoadError.value = false
         loading.value = false
+
+    }
+
+    private fun onError() {
+        moviesLoadError.value = true
+        loading.value = false
+        Log.d("remoteResponse", "An error occured while loading data from remote...")
+    }
+
+    override fun onCleared() {
+        super.onCleared()
     }
 }
