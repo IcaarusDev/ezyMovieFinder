@@ -4,7 +4,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="120dp">
+        android:layout_height="88dp">
 
         <ImageView
             android:id="@+id/movieImage"

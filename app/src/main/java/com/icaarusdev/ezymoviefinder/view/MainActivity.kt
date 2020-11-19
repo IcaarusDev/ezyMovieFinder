@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.icaarusdev.ezymoviefinder.R
 import com.icaarusdev.ezymoviefinder.util.hideKeyboard
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,52 +30,12 @@ class MainActivity : AppCompatActivity() {
 
         navController = Navigation.findNavController(this,R.id.fragment)
         NavigationUI.setupActionBarWithNavController(this,navController)
-
         appBarConfiguration = AppBarConfiguration(navController.graph)
 
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-//
-//        menuInflater.inflate(R.menu.menu_search, menu)
-//
-//        val menuItem = menu!!.findItem(R.id.action_search)
-//
-//        if (menuItem !=null){
-//            val searchView = menuItem.actionView as SearchView
-//
-//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//
-//                    val action = MovieListFragmentDirections.actionMovieListFragmentToSearchMovieFragment()
-//                    navController.navigate(action)
-//                    hideKeyboard(window.decorView.rootView)
-//                    searchView.visibility = View.GONE
-//                    return true
-//                }
-//
-//                override fun onQueryTextChange(newText: String?): Boolean {
-//
-//                    if(newText!!.isNotEmpty()){
-//
-//                    }
-//
-//                    return true
-//                }
-//
-//            })
-//        }
-//
-//        return super.onCreateOptionsMenu(menu)
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return super.onOptionsItemSelected(item)
-//    }
-
     override fun onSupportNavigateUp(): Boolean {
-        //return NavigationUI.navigateUp(navController,null)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 }
