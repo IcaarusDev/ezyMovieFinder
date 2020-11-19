@@ -41,8 +41,13 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
             moviesList[position].id?.toInt()?.let { it1 -> action.setId(it1) }
             holder.view.findNavController().navigate(action)
 
-
         }
+
+        holder.view.favoriteIcon.setOnClickListener{
+
+            //Toast.makeText(holder.view.favoriteIcon.context,"click!",Toast.LENGTH_SHORT).show()
+        }
+
         moviesList[position].backDropPath?.let {
             holder.view.movieImage.setImage(it, getImageProgress(holder.view.movieImage.context))
         }
