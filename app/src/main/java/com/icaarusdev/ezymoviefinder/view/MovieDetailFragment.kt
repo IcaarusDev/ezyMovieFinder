@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.icaarusdev.ezymoviefinder.R
@@ -34,29 +35,22 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        (activity as AppCompatActivity).supportActionBar?.title = "EzyMovieFinder"
+        (activity as AppCompatActivity).supportActionBar?.subtitle = "Movie Details"
+
         arguments?.let {
             movieId = MovieDetailFragmentArgs.fromBundle(it).id
         }
 
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
-        viewModel.fetchData(movieId)
+        viewModel.refreshData(movieId)
 
         observeViewModel()
     }
 
     private fun observeViewModel() {
-        viewModel.movieLiveData.observe(viewLifecycleOwner, Observer { movie: Movie ->
-            movie?.let {
-                movieTitle.text = movie.title
-                movieDescription.text = movie.overview
-                context?.let{
-                    movie.backDropPath?.let { it1 ->
-                        backDropPath.setImage(
-                            it1,
-                            getImageProgress(it))
-                    }
-                }
-            }
+        viewModel.titletxt.observe(viewLifecycleOwner, Observer { titletxt: String ->
+            movieTitle.text = titletxt
         })
     }
 }

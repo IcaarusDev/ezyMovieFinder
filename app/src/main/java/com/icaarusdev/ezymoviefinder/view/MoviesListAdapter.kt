@@ -41,6 +41,7 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
             moviesList[position].id?.toInt()?.let { it1 -> action.setId(it1) }
             holder.view.findNavController().navigate(action)
 
+
         }
         moviesList[position].backDropPath?.let {
             holder.view.movieImage.setImage(it, getImageProgress(holder.view.movieImage.context))

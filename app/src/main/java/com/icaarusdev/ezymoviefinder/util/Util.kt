@@ -1,6 +1,8 @@
 package com.icaarusdev.ezymoviefinder.util
 
 import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -23,4 +25,9 @@ fun ImageView.setImage(uri: String, progressDrawable: CircularProgressDrawable) 
         .setDefaultRequestOptions(options)
         .load("https://image.tmdb.org/t/p/w342${uri}")
         .into(this)
+}
+
+fun hideKeyboard(view: View) {
+    val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
 }

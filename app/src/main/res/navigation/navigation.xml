@@ -10,6 +10,9 @@
         <action
             android:id="@+id/actionMovieDetailFragment"
             app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_movieListFragment_to_searchMovieFragment"
+            app:destination="@id/searchMovieFragment" />
 
     </fragment>
 
@@ -25,6 +28,20 @@
             android:name="id"
             android:defaultValue="0"
             app:argType="integer"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.icaarusdev.ezymoviefinder.view.SearchMovieFragment"
+        android:label="SearchMovieFragment" >
+        <action
+            android:id="@+id/actionSearchMovieFragment"
+            app:destination="@id/movieListFragment" />
+        <action
+            android:id="@+id/action_searchMovieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
 
     </fragment>
 </navigation>
