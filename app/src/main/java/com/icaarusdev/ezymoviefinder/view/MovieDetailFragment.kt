@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.icaarusdev.ezymoviefinder.R
@@ -17,6 +18,7 @@ import com.icaarusdev.ezymoviefinder.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlinx.android.synthetic.main.item_movie.*
+import kotlinx.android.synthetic.main.item_movie.view.*
 
 
 class MovieDetailFragment : Fragment() {
@@ -48,9 +50,23 @@ class MovieDetailFragment : Fragment() {
         observeViewModel()
     }
 
+
     private fun observeViewModel() {
-        viewModel.titletxt.observe(viewLifecycleOwner, Observer { titletxt: String ->
+        viewModel.titleTxt.observe(viewLifecycleOwner, Observer { titletxt: String ->
             movieTitle.text = titletxt
+        })
+        viewModel.overviewTxt.observe(viewLifecycleOwner, Observer { overview: String ->
+            movieDescription.text = overview
+        })
+        viewModel.releaseDataTxt.observe(viewLifecycleOwner, Observer { release_date: String ->
+            movieReleaseDate.text = release_date
+        })
+        viewModel.voteAverageTxt.observe(viewLifecycleOwner, Observer { vote_average: String ->
+            movieVoteAverage.text = vote_average
+        })
+        viewModel.backdropPathTxt.observe(viewLifecycleOwner, Observer { backDropString: String ->
+            backDropPath.setImage(backDropString,getImageProgress(requireContext()))
+
         })
     }
 }

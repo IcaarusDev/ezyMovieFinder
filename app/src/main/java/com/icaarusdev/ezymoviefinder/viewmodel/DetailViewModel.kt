@@ -23,7 +23,11 @@ class DetailViewModel(application: Application) : BaseViewModel(application) {
 
     val movies = MutableLiveData<List<Movie>>()
 
-    val titletxt = MutableLiveData<String>()
+    val titleTxt = MutableLiveData<String>()
+    val overviewTxt = MutableLiveData<String>()
+    val releaseDataTxt = MutableLiveData<String>()
+    val voteAverageTxt = MutableLiveData<String>()
+    val backdropPathTxt = MutableLiveData<String>()
 
     fun refreshData(movieId: Int) {
         fetchFromRemote(movieId)
@@ -37,17 +41,17 @@ class DetailViewModel(application: Application) : BaseViewModel(application) {
         )
     }
 
-    private fun onNowPlayingMoviesFetched(title: String) {
-        titletxt.value = title
-        //Log.d("getMovieDetails", "${title}")
+    private fun onNowPlayingMoviesFetched(title: String, backdrop_path: String,
+                                          release_date: String,overview: String,vote_average:String) {
+        titleTxt.value = title
+        overviewTxt.value = overview
+        releaseDataTxt.value = "Release Date: ${release_date}"
+        voteAverageTxt.value = "Vote Average: ${vote_average}"
+        backdropPathTxt.value = backdrop_path
     }
 
     private fun onError() {
         Log.d("remoteResponse", "An error occured while loading data from remote...")
-    }
-
-    private fun moviesFromRemote(moviesList: List<Movie>){
-        //movies.value = moviesList
     }
 
 

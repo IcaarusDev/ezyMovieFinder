@@ -83,27 +83,27 @@ class MovieListFragment : Fragment() {
         inflater.inflate(R.menu.menu_search, menu)
     }
 
-    override fun onOptionsItemSelected(menu: Menu?): Boolean {
-        val menuItem = menu!!.findItem(R.id.action_search)
-
-        if (menuItem !=null){
-            val searchView = menuItem.actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-
-                    val action = MovieListFragmentDirections.actionMovieListFragmentToSearchMovieFragment()
-                    return true
-                }
-                override fun onQueryTextChange(newText: String?): Boolean {
-
-                    if(newText!!.isNotEmpty()){
-
-                    }
-                    return true
-                }
-
-            })
-        }
-        return super.onOptionsItemSelected(menuItem)
-    }
+//    override fun onOptionsItemSelected(menu: Menu): Boolean {
+//        val menuItem = menu.findItem(R.id.action_search)
+//
+//        if (menuItem !=null){
+//            val searchView = menuItem.actionView as SearchView
+//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+//                override fun onQueryTextSubmit(query: String?): Boolean {
+//
+//                    val action = MovieListFragmentDirections.actionMovieListFragmentToSearchMovieFragment()
+//                    return true
+//                }
+//                override fun onQueryTextChange(newText: String?): Boolean {
+//
+//                    if(newText!!.isNotEmpty()){
+//
+//                    }
+//                    return true
+//                }
+//
+//            })
+//        }
+//        return super.onOptionsItemSelected(menuItem)
+//    }
 }

@@ -77,7 +77,12 @@ object MoviesApiService {
     }
 
     fun getMovieDetails(
-        onSuccess: (title:String) -> Unit,
+        onSuccess: (title:String,
+                    backdrop_path:String,
+                    release_date:String,
+                    overview: String,
+                    vote_average: String
+                    ) -> Unit,
         onError: () -> Unit,
         movieId: Int
     ) {
@@ -96,7 +101,11 @@ object MoviesApiService {
                     if (response.isSuccessful) {
                         val bodyResponse = response.body()
                         if (bodyResponse != null) {
-                            onSuccess.invoke(bodyResponse.title)
+                            onSuccess.invoke(bodyResponse.title,
+                                bodyResponse.backdrop_path,
+                                bodyResponse.release_date,
+                                bodyResponse.overview,
+                                bodyResponse.vote_average)
                         } else {
                             onError.invoke()
                         }

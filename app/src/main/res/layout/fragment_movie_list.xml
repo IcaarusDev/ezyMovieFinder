@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 
-
-
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshlayout"
         android:layout_width="match_parent"
