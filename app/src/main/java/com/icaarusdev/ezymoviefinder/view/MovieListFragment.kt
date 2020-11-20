@@ -3,15 +3,12 @@ package com.icaarusdev.ezymoviefinder.view
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.icaarusdev.ezymoviefinder.R
 import com.icaarusdev.ezymoviefinder.model.Movie
-import com.icaarusdev.ezymoviefinder.view.MovieDetailFragmentDirections.actionMovieListFragment
 import com.icaarusdev.ezymoviefinder.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 

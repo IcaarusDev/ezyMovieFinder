@@ -5,11 +5,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-@Entity
+@Entity(tableName = "movies")
 data class Movie(
+    @PrimaryKey(autoGenerate = true)
+    var uuid: Int = 0,
+
     @ColumnInfo(name = "id")
     @SerializedName("id")
     val id: String?,
+
+    @ColumnInfo(name = "favorite")
+    var favorite: Int = 0,
 
     @ColumnInfo(name = "title")
     @SerializedName("title")
@@ -30,7 +36,5 @@ data class Movie(
     @ColumnInfo(name = "vote_average")
     @SerializedName("vote_average")
     val voteAverage: String?
-){
-    @PrimaryKey(autoGenerate = true)
-    var uuid: Int = 0
-}
+
+)

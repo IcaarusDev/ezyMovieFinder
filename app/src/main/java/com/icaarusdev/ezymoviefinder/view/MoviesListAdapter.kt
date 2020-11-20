@@ -1,22 +1,25 @@
 package com.icaarusdev.ezymoviefinder.view
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.fragment.app.ListFragment
-import androidx.navigation.Navigation
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.icaarusdev.ezymoviefinder.R
 import com.icaarusdev.ezymoviefinder.model.Movie
 import com.icaarusdev.ezymoviefinder.util.getImageProgress
 import com.icaarusdev.ezymoviefinder.util.setImage
+import com.icaarusdev.ezymoviefinder.viewmodel.ListViewModel
 import kotlinx.android.synthetic.main.item_movie.view.*
+
 
 class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
     RecyclerView.Adapter<MoviesListAdapter.MovieViewHolder>() {
+
+    private lateinit var listViewModel: ListViewModel
 
     fun updateMovieList(newMoviesList: List<Movie>) {
         moviesList.clear()
@@ -26,6 +29,10 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val inflater = LayoutInflater.from(parent.context)
+
+        listViewModel = ViewModelProviders.of((parent.context as FragmentActivity)).get(
+            ListViewModel::class.java
+        )
         val view = inflater.inflate(R.layout.item_movie, parent, false)
         return MovieViewHolder(view)
     }
@@ -33,7 +40,7 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.view.txMovieTitle.text = moviesList[position].title
         holder.view.txMovieDescription.text = moviesList[position].overview
-        holder.view.setOnClickListener{
+        holder.view.setOnClickListener {
             //Toast.makeText(holder.view.context,"${moviesList[position].id}",Toast.LENGTH_SHORT).show()
             //Navigation.findNavController(it).navigate(MovieListFragmentDirections.actionMovieDetailFragment())
 
@@ -43,9 +50,8 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
 
         }
 
-        holder.view.favoriteIcon.setOnClickListener{
-
-            //Toast.makeText(holder.view.favoriteIcon.context,"click!",Toast.LENGTH_SHORT).show()
+        holder.view.favoriteIcon.setOnClickListener {
+            moviesList[position].id?.toInt()?.let { it1 -> listViewModel.updateFavorite(it1, 1) }
         }
 
         moviesList[position].backDropPath?.let {

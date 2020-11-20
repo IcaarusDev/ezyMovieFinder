@@ -14,7 +14,6 @@ import kotlinx.coroutines.launch
 
 class ListViewModel(application: Application) : BaseViewModel(application) {
 
-    private val moviesService = MoviesApiService
     private var prefHelper = SharedPreferencesHelper(getApplication())
     private var refreshTime = 5 * 60 * 1000 * 1000 * 1000L
 
@@ -83,6 +82,12 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             moviesFromRemote(movieList)
         }
         prefHelper.saveUpdateTime(System.nanoTime())
+    }
+
+    internal fun updateFavorite(movie_id: Int, favorite: Int){
+        launch {
+           MovieDatabase(getApplication()).movieDao().updateFavorite(movie_id,favorite)
+        }
     }
 
 }

@@ -22,7 +22,7 @@ abstract class MovieDatabase: RoomDatabase(){
         private fun buildDb(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             MovieDatabase::class.java,
-            "movie_database"
+            "ezmoviefinder"
         ).build()
     }
 }
