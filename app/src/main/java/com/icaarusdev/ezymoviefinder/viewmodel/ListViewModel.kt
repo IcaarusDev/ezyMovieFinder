@@ -2,6 +2,7 @@ package com.icaarusdev.ezymoviefinder.viewmodel
 
 import android.app.Application
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,21 +21,22 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     val movies = MutableLiveData<List<Movie>>()
     val moviesLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
+    val favoriteImage = MutableLiveData<Boolean>()
 
     fun refreshData() {
         val updateTime = prefHelper.getUpdateTime()
-        if(updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime){
+        if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
             fetchFromDb()
-        }else{
+        } else {
             fetchFromRemote()
         }
     }
 
-    fun refreshFromCache(){
+    fun refreshFromCache() {
         fetchFromRemote()
     }
 
-    private fun fetchFromDb(){
+    private fun fetchFromDb() {
         loading.value = true
         launch {
             val movies: List<Movie> = MovieDatabase(getApplication()).movieDao().getAll()
@@ -62,20 +64,20 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         Log.d("remoteResponse", "An error occured while loading data from remote...")
     }
 
-    private fun moviesFromRemote(moviesList: List<Movie>){
+    private fun moviesFromRemote(moviesList: List<Movie>) {
         movies.value = moviesList
         moviesLoadError.value = false
         loading.value = false
     }
 
-    private fun storeRemoteDataLocally(movieList: List<Movie>){
-        launch{
-            val dao:MovieDao = MovieDatabase(getApplication()).movieDao()
+    private fun storeRemoteDataLocally(movieList: List<Movie>) {
+        launch {
+            val dao: MovieDao = MovieDatabase(getApplication()).movieDao()
             dao.deleteAll()
 
             val result: List<Long> = dao.insertAll(*movieList.toTypedArray())
             var i = 0
-            while(i < movieList.size){
+            while (i < movieList.size) {
                 movieList[i].uuid = result[i].toInt()
                 ++i
             }
@@ -84,10 +86,18 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         prefHelper.saveUpdateTime(System.nanoTime())
     }
 
-    internal fun updateFavorite(movie_id: Int, favorite: Int){
+    fun updateFavorite(movie_id: Int) {
         launch {
-           MovieDatabase(getApplication()).movieDao().updateFavorite(movie_id,favorite)
+            val dao: MovieDao = MovieDatabase(getApplication()).movieDao()
+            val result: List<Movie> = dao.getMovie(movie_id)
+
+            if (result[0].favorite == 1) {
+                dao.updateFavorite(movie_id, 0)
+                favoriteImage.value = false
+            } else {
+                dao.updateFavorite(movie_id, 1)
+                favoriteImage.value = true
+            }
         }
     }
-
 }

@@ -43,15 +43,13 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
         holder.view.setOnClickListener {
             //Toast.makeText(holder.view.context,"${moviesList[position].id}",Toast.LENGTH_SHORT).show()
             //Navigation.findNavController(it).navigate(MovieListFragmentDirections.actionMovieDetailFragment())
-
             val action = MovieListFragmentDirections.actionMovieDetailFragment()
             moviesList[position].id?.toInt()?.let { it1 -> action.setId(it1) }
             holder.view.findNavController().navigate(action)
-
         }
 
         holder.view.favoriteIcon.setOnClickListener {
-            moviesList[position].id?.toInt()?.let { it1 -> listViewModel.updateFavorite(it1, 1) }
+            moviesList[position].id?.toInt()?.let { it1 -> listViewModel.updateFavorite(it1) }
         }
 
         moviesList[position].backDropPath?.let {

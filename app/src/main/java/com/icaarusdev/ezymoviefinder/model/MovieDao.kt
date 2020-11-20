@@ -14,12 +14,12 @@ interface MovieDao {
     suspend fun getAll(): List<Movie>
 
     @Query("SELECT * FROM movies WHERE id = :movieId")
-    suspend fun getMovie(movieId: Int): Movie
+    suspend fun getMovie(movieId: Int): List<Movie>
 
     @Query("SELECT * FROM movies WHERE title LIKE :title")
     suspend fun searchMovieByTitle(title: String): Movie
 
     @Query("UPDATE movies SET favorite=:favorite WHERE id=:movie_id")
-    suspend fun updateFavorite(movie_id: Int,favorite: Int)
+    suspend fun updateFavorite(movie_id: Int, favorite: Int)
 
 }
