@@ -100,4 +100,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
             }
         }
     }
+
+    private fun setOverviewTextLimit(){
+
+    }
 }
