@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/movieImage"
             android:layout_width="0dp"
-            android:src="@mipmap/ic_launcher"
+            android:imageUrl="@{movie.backDropPath}"
             android:layout_height="match_parent"
             android:layout_weight="2"
             android:padding="4dp" />

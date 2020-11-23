@@ -49,7 +49,7 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
 //            //Navigation.findNavController(it).navigate(MovieListFragmentDirections.actionMovieDetailFragment())
 //            val action = MovieListFragmentDirections.actionMovieDetailFragment()
 //            moviesList[position].id?.toInt()?.let { it1 -> action.setId(it1) }
-//            holder.view.findNavController().navigate(action)
+//            holder.view.findNavController().  navigate(action)
 //        }
 //
 //        holder.view.favoriteIcon.setOnClickListener {
