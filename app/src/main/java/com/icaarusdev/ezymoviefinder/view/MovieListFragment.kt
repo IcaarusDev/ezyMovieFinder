@@ -81,18 +81,6 @@ class MovieListFragment : Fragment() {
                 }
             }
         })
-
-        viewModel.favoriteImage.observe(viewLifecycleOwner, Observer { favoriteImage ->
-            favoriteImage?.let {
-//                progressBarView.visibility = if (it) View.VISIBLE else View.GONE
-                Log.d("favoriteSit", "$it")
-                if (it) {
-                    favoriteIcon.setImageResource(R.drawable.ic_favorite)
-                } else {
-                    favoriteIcon.setImageResource(R.drawable.ic_favorite_bordered)
-                }
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -100,27 +88,12 @@ class MovieListFragment : Fragment() {
         inflater.inflate(R.menu.menu_search, menu)
     }
 
-//    override fun onOptionsItemSelected(menu: Menu): Boolean {
-//        val menuItem = menu.findItem(R.id.action_search)
-//
-//        if (menuItem !=null){
-//            val searchView = menuItem.actionView as SearchView
-//            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-//                override fun onQueryTextSubmit(query: String?): Boolean {
-//
-//                    val action = MovieListFragmentDirections.actionMovieListFragmentToSearchMovieFragment()
-//                    return true
-//                }
-//                override fun onQueryTextChange(newText: String?): Boolean {
-//
-//                    if(newText!!.isNotEmpty()){
-//
-//                    }
-//                    return true
-//                }
-//
-//            })
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when(item.itemId){
+//            R.id.action_settings -> {
+//                true
+//            }
+//            else -> return super.onOptionsItemSelected(item)
 //        }
-//        return super.onOptionsItemSelected(menuItem)
 //    }
 }
