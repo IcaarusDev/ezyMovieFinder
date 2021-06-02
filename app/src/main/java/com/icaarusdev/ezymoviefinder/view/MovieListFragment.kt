@@ -40,7 +40,6 @@ class MovieListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         (activity as AppCompatActivity).supportActionBar?.title = "EzyMovieFinder"
-        (activity as AppCompatActivity).supportActionBar?.subtitle = "NowPlaying"
 
         movieRcv.apply {
             layoutManager = LinearLayoutManager(context)
@@ -81,6 +80,19 @@ class MovieListFragment : Fragment() {
                 }
             }
         })
+
+        viewModel.favoriteImage.observe(viewLifecycleOwner, Observer { favoriteImage ->
+            favoriteImage?.let {
+//                progressBarView.visibility = if (it) View.VISIBLE else View.GONE
+                Log.d("favoriteSit", "$it")
+                if (it) {
+                    //favoriteIcon.setImageResource(R.drawable.ic_favorite)
+                } else {
+                    //favoriteIcon.setImageResource(R.drawable.ic_favorite_bordered)
+                }
+            }
+        })
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

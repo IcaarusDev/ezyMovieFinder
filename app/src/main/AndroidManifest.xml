@@ -13,7 +13,6 @@
         android:theme="@style/Theme.EzyMovieFinder"
         >
         <activity android:name=".view.MainActivity"
-            android:theme="@style/Theme.EzyMovieFinder.NoActionBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

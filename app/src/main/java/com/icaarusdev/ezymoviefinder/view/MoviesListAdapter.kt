@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.item_movie.view.*
 class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
     RecyclerView.Adapter<MoviesListAdapter.MovieViewHolder>(), MovieClickListener {
 
-    private lateinit var listViewModel: ListViewModel
 
     fun updateMovieList(newMoviesList: List<Movie>) {
         moviesList.clear()
@@ -40,6 +39,23 @@ class MoviesListAdapter(val moviesList: ArrayList<Movie>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.view.movie = moviesList[position]
+        //holder.view.txMovieTitle.text = moviesList[position].title
+        //holder.view.txMovieDescription.text = moviesList[position].overview
+//        holder.view.setOnClickListener {
+//            //Toast.makeText(holder.view.context,"${moviesList[position].id}",Toast.LENGTH_SHORT).show()
+//            //Navigation.findNavController(it).navigate(MovieListFragmentDirections.actionMovieDetailFragment())
+//            val action = MovieListFragmentDirections.actionMovieDetailFragment()
+//            moviesList[position].id?.toInt()?.let { it1 -> action.setId(it1) }
+//            holder.view.findNavController().navigate(action)
+//        }
+
+//        holder.view.favoriteIcon.setOnClickListener {
+//            moviesList[position].id?.toInt()?.let { it1 -> listViewModel.updateFavorite(it1) }
+//        }
+
+        moviesList[position].backDropPath?.let {
+            holder.view.movieImage.setImage(it, getImageProgress(holder.view.movieImage.context))
+        }
         holder.view.listener = this
     }
 
