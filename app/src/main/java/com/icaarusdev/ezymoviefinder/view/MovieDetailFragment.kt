@@ -37,9 +37,6 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (activity as AppCompatActivity).supportActionBar?.title = "EzyMovieFinder"
-        (activity as AppCompatActivity).supportActionBar?.subtitle = "Movie Details"
-
         arguments?.let {
             movieId = MovieDetailFragmentArgs.fromBundle(it).id
         }
