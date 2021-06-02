@@ -86,18 +86,5 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         prefHelper.saveUpdateTime(System.nanoTime())
     }
 
-    fun updateFavorite(movie_id: Int) {
-        launch {
-            val dao: MovieDao = MovieDatabase(getApplication()).movieDao()
-            val result: List<Movie> = dao.getMovie(movie_id)
 
-            if (result[0].favorite == 1) {
-                dao.updateFavorite(movie_id, 0)
-                favoriteImage.value = false
-            } else {
-                dao.updateFavorite(movie_id, 1)
-                favoriteImage.value = true
-            }
-        }
-    }
 }

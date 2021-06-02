@@ -1,37 +1,36 @@
 package com.icaarusdev.ezymoviefinder.view
 
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
+import androidx.core.content.ContextCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.icaarusdev.ezymoviefinder.R
-import com.icaarusdev.ezymoviefinder.model.Movie
+import com.icaarusdev.ezymoviefinder.databinding.FragmentMovieDetailBinding
 import com.icaarusdev.ezymoviefinder.util.getImageProgress
 import com.icaarusdev.ezymoviefinder.util.setImage
 import com.icaarusdev.ezymoviefinder.viewmodel.DetailViewModel
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
-import kotlinx.android.synthetic.main.fragment_movie_list.*
-import kotlinx.android.synthetic.main.item_movie.*
-import kotlinx.android.synthetic.main.item_movie.view.*
 
 
 class MovieDetailFragment : Fragment() {
 
     private lateinit var viewModel: DetailViewModel
-    private var movieId = 0;
+    private var movieId = 0
+    private lateinit var dataBinding: FragmentMovieDetailBinding
+    private lateinit var optionsMenu: Menu
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie_detail, container, false)
+        setHasOptionsMenu(true)
+        dataBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_movie_detail, container, false)
+        return dataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,10 +42,26 @@ class MovieDetailFragment : Fragment() {
 
         viewModel = ViewModelProviders.of(this).get(DetailViewModel::class.java)
         viewModel.refreshData(movieId)
+        viewModel.favoriteImage
 
         observeViewModel()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        this.optionsMenu = menu
+        inflater.inflate(R.menu.menu_favorite, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_favorite -> {
+                viewModel.updateFavorite(movieId)
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
 
     private fun observeViewModel() {
         viewModel.titleTxt.observe(viewLifecycleOwner, Observer { titletxt: String ->
@@ -62,8 +77,18 @@ class MovieDetailFragment : Fragment() {
             movieVoteAverage.text = vote_average
         })
         viewModel.backdropPathTxt.observe(viewLifecycleOwner, Observer { backDropString: String ->
-            backDropPath.setImage(backDropString,getImageProgress(requireContext()))
+            backDropPath.setImage(backDropString, getImageProgress(requireContext()))
+        })
 
+        viewModel.favoriteImage.observe(viewLifecycleOwner, Observer {
+            val favorite: Boolean? = viewModel.favoriteImage.value
+            if (favorite!!) {
+                optionsMenu.getItem(0).icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite);
+            } else {
+                optionsMenu.getItem(0).icon =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.ic_favorite_bordered);
+            }
         })
     }
 }
