@@ -1,72 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <variable
-            name="movie"
-            type="com.icaarusdev.ezymoviefinder.model.Movie" />
-    </data>
+
 
     <LinearLayout
-        android:id="@+id/movieDetailsRl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
-        tools:context=".view.MovieDetailFragment">
-
-        <ImageView
-            android:id="@+id/backDropPath"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="150dp"
-            android:imageUrl="@{movie.backDropPath}"
-            android:scaleType="fitCenter" />
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
 
         <TextView
-            android:id="@+id/movieTitle"
-            style="@style/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@{movie.title}" />
-
-        <TextView
-            android:id="@+id/movieDescription"
-            style="@style/Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:text="@{movie.overview}" />
-
-        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            android:weightSum="2">
+            android:layout_height="match_parent"
+            tools:text="fsafafas"></TextView>
 
-            <TextView
-                android:id="@+id/movieReleaseDate"
-                style="@style/Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@{movie.releaseDate}" />
-
-            <TextView
-                android:id="@+id/movieVoteAverage"
-                style="@style/Text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@{movie.voteAverage}" />
-
-        </LinearLayout>
 
     </LinearLayout>
-
-
 </layout>

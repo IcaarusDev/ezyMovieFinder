@@ -5,20 +5,17 @@
 
     <fragment
         android:id="@+id/movieListFragment"
-        android:name="com.icaarusdev.ezymoviefinder.view.MovieListFragment"
+        android:name="com.icaarusdev.ezymoviefinder.ui.movie.MovieListFragment"
         android:label="MovieListFragment" >
         <action
             android:id="@+id/actionMovieDetailFragment"
             app:destination="@id/movieDetailFragment" />
-        <action
-            android:id="@+id/action_movieListFragment_to_searchMovieFragment"
-            app:destination="@id/searchMovieFragment" />
 
     </fragment>
 
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.icaarusdev.ezymoviefinder.view.MovieDetailFragment"
+        android:name="com.icaarusdev.ezymoviefinder.ui.movie.MovieDetailFragment"
         android:label="MovieDetailFragment" >
         <action
             android:id="@+id/actionMovieListFragment"
@@ -33,16 +30,4 @@
     </fragment>
 
 
-    <fragment
-        android:id="@+id/searchMovieFragment"
-        android:name="com.icaarusdev.ezymoviefinder.view.SearchMovieFragment"
-        android:label="SearchMovieFragment" >
-        <action
-            android:id="@+id/actionSearchMovieFragment"
-            app:destination="@id/movieListFragment" />
-        <action
-            android:id="@+id/action_searchMovieFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
-
-    </fragment>
 </navigation>

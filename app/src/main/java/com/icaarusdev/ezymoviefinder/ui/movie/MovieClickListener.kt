@@ -1,4 +1,4 @@
-package com.icaarusdev.ezymoviefinder.view
+package com.icaarusdev.ezymoviefinder.ui.movie
 
 import android.view.View
 

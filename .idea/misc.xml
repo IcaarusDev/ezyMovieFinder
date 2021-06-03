@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/drawable/gradient.xml" value="0.30833333333333335" />
         <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/activity_main.xml" value="0.21302083333333333" />
-        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/fragment_movie_list.xml" value="0.2" />
-        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/item_movie.xml" value="0.67" />
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/fragment_movie_detail.xml" value="0.21354166666666666" />
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/fragment_movie_list.xml" value="0.25" />
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/fragment_search_movie.xml" value="0.36666666666666664" />
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/item_movie.xml" value="0.25" />
         <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/layout/toolbar.xml" value="0.33" />
+        <entry key="..\:/Development/ezyMovieFinder/app/src/main/res/menu/menu_search.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
