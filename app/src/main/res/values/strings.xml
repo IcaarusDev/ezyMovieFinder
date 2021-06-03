@@ -4,4 +4,6 @@
 
     <string name="now_playing">Now playing</string>
     <string name="favorite">Favorite</string>
+    <string name="data_cant_be_loaded">Data cannot be loaded... click in button bellow and try again</string>
+    <string name="retry">Try again</string>
 </resources>
