@@ -5,8 +5,10 @@ import android.view.*
 import androidx.fragment.app.Fragment
 import com.icaarusdev.ezymoviefinder.R
 import com.icaarusdev.ezymoviefinder.viewmodel.ListViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MovieListFragment : Fragment(R.layout.fragment_movie_list) {
 
     private lateinit var viewModel: ListViewModel

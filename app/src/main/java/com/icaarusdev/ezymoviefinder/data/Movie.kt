@@ -1,4 +1,4 @@
-package com.icaarusdev.ezymoviefinder.model
+package com.icaarusdev.ezymoviefinder.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
